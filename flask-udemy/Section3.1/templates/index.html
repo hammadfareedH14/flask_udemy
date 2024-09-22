@@ -1,0 +1,40 @@
+
+<html>
+<head>
+<script type="text/javascript">
+	// Function to make an asynchronous GET request
+	function httpGetAsync(theUrl, callback) {
+	    // Create a new XMLHttpRequest object
+	    var xmlHttp = new XMLHttpRequest();
+
+	    // Define what should happen when the state of the request changes
+	    xmlHttp.onreadystatechange = function() {
+	        // Check if the request is complete (readyState 4) and was successful (status 200)
+	        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+	            // If successful, call the callback function with the response text
+	            callback(xmlHttp.responseText);
+	    }
+	    
+	    // Initialize the request with the HTTP method (GET) and the URL
+	    xmlHttp.open("GET", theUrl, true); // true for asynchronous
+	    
+	    // Send the request
+	    xmlHttp.send(null);
+	}
+
+	// Call the httpGetAsync function with the URL and a callback function
+	httpGetAsync('http://127.0.0.1:5003/store', function(response) {
+	    // Alert the response text received from the server
+	    alert(response);
+	});
+</script>
+</head>
+<body>
+
+<!-- A div element with some text -->
+<div id="myElement">
+	Hello, world!
+</div>
+
+</body>
+</html>
